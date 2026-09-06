@@ -1,0 +1,1600 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="BioTech - Modelo predictivo de sostenibilidad y eficiencia para manufactura.">
+<title>BioTech | Manufactura predictiva y sostenible</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0f2027;
+  --blue: #203a43;
+  --blue2: #2c5364;
+  --green: #00b09b;
+  --green-light: #1dd1a1;
+  --orange: #f2994a;
+  --orange-light: #ffb347;
+  --bg: #f4f7f6;
+  --white: #fff;
+  --text: #243136;
+  --muted: #66757a;
+  --line: #dfe8e5;
+  --shadow: 0 20px 50px rgba(15,32,39,.10);
+  --shadow-lg: 0 40px 80px rgba(15,32,39,.15);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', system-ui, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  width: min(1180px, 92%);
+  margin: auto;
+}
+
+/* NAVBAR MEJORADA */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(15, 32, 39, .95);
+  backdrop-filter: blur(12px);
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(0,0,0,.1);
+}
+
+.nav-inner {
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand span {
+  color: var(--green);
+}
+
+.brand-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--green), var(--orange));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.brand-icon svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  font-size: .92rem;
+  color: #dce6e7;
+}
+
+.nav-links a {
+  transition: color .3s ease;
+  position: relative;
+}
+
+.nav-links a:hover {
+  color: var(--green);
+}
+
+/* HERO SECTION MEJORADA */
+.hero {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 50%, var(--blue2) 100%);
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(0,176,155,.15) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float 8s ease-in-out infinite;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(242,153,74,.1) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float 10s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(30px); }
+}
+
+.hero-grid {
+  min-height: 700px;
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 60px;
+  align-items: center;
+  padding: 100px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.eyebrow {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  padding: 10px 16px;
+  border: 1.5px solid rgba(0,176,155,.3);
+  border-radius: 999px;
+  background: rgba(0,176,155,.08);
+  font-size: .85rem;
+  color: #d9eeee;
+  animation: fadeInUp .6s ease .2s both;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background: var(--green);
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(0,176,155,.8);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(0,176,155,.8);
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: 0 0 40px rgba(0,176,155,.4);
+    transform: scale(1.2);
+  }
+}
+
+h1 {
+  font-size: clamp(2.8rem, 6vw, 5.5rem);
+  line-height: 1.05;
+  letter-spacing: -2.5px;
+  margin: 24px 0 16px;
+  animation: fadeInUp .8s ease .3s both;
+}
+
+.hero h1 span {
+  background: linear-gradient(135deg, var(--green), var(--orange));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero p {
+  color: #d7e2e2;
+  max-width: 640px;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  animation: fadeInUp .8s ease .4s both;
+}
+
+.actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin: 36px 0 24px;
+  animation: fadeInUp .8s ease .5s both;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 15px 24px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: .95rem;
+  border: 1px solid transparent;
+  transition: all .3s ease;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--orange), #e67e3c);
+  color: #fff;
+  box-shadow: 0 10px 30px rgba(242,153,74,.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 45px rgba(242,153,74,.4);
+}
+
+.btn-ghost {
+  border-color: rgba(255,255,255,.25);
+  color: #fff;
+  background: rgba(255,255,255,.08);
+  backdrop-filter: blur(4px);
+}
+
+.btn-ghost:hover {
+  background: rgba(255,255,255,.15);
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.hero-note {
+  font-size: .82rem;
+  color: #a9c0c2;
+  animation: fadeInUp .8s ease .6s both;
+}
+
+/* DASHBOARD MOCKUP MEJORADO */
+.dashboard {
+  background: linear-gradient(135deg, rgba(255,255,255,.98) 0%, rgba(244,247,246,.95) 100%);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: var(--shadow-lg);
+  animation: slideInRight .8s ease .5s both;
+  border: 1px solid rgba(0,176,155,.1);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.dash-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 4px 16px;
+  border-bottom: 2px solid var(--line);
+}
+
+.dash-title {
+  font-weight: 800;
+  color: var(--navy);
+  font-size: 1.1rem;
+}
+
+.status {
+  font-size: .75rem;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(0,176,155,.1), rgba(29,209,161,.1));
+  color: var(--green);
+  font-weight: 700;
+  border: 1px solid rgba(0,176,155,.2);
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.metric {
+  border: 1.5px solid var(--line);
+  border-radius: 14px;
+  padding: 16px;
+  background: #fbfcfc;
+  transition: all .3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.metric::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--green), var(--orange));
+}
+
+.metric:hover {
+  transform: translateY(-4px);
+  border-color: var(--green);
+  box-shadow: 0 10px 25px rgba(0,176,155,.12);
+}
+
+.metric small {
+  display: block;
+  color: var(--muted);
+  font-size: .7rem;
+  margin-bottom: 6px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+
+.metric strong {
+  font-size: 1.15rem;
+  color: var(--navy);
+  display: block;
+}
+
+.trend {
+  font-size: .72rem;
+  color: var(--green);
+  font-weight: 700;
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.trend svg {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+.chart-card {
+  margin-top: 14px;
+  border: 1.5px solid var(--line);
+  border-radius: 16px;
+  padding: 14px;
+  background: #fafbfb;
+}
+
+.chart-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.chart-head b {
+  font-size: .85rem;
+  color: var(--navy);
+}
+
+.legend {
+  font-size: .68rem;
+  color: var(--muted);
+  background: rgba(0,176,155,.05);
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.chart {
+  height: 160px;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  padding: 16px 4px 8px;
+}
+
+.bar {
+  flex: 1;
+  border-radius: 8px 8px 2px 2px;
+  background: linear-gradient(180deg, var(--green), #1dd1a1);
+  position: relative;
+  transition: all .3s ease;
+}
+
+.bar:hover {
+  filter: brightness(1.1);
+  transform: translateY(-4px);
+}
+
+.bar:nth-child(1) { height: 55%; animation: barFill .6s ease .2s both; }
+.bar:nth-child(2) { height: 70%; animation: barFill .6s ease .3s both; }
+.bar:nth-child(3) { height: 46%; animation: barFill .6s ease .4s both; }
+.bar:nth-child(4) { height: 80%; animation: barFill .6s ease .5s both; }
+.bar:nth-child(5) { height: 62%; animation: barFill .6s ease .6s both; }
+.bar:nth-child(6) { height: 92%; animation: barFill .6s ease .7s both; }
+
+@keyframes barFill {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.chart-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: .62rem;
+  color: #87979b;
+  padding: 0 2px;
+}
+
+.alert {
+  margin-top: 12px;
+  border-left: 4px solid var(--orange);
+  background: linear-gradient(90deg, rgba(242,153,74,.08), rgba(242,153,74,.02));
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(242,153,74,.2);
+}
+
+.alert b {
+  color: var(--orange);
+  font-size: .83rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.alert b svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
+.alert p {
+  font-size: .72rem;
+  color: #7a6b61;
+  margin-top: 4px;
+}
+
+/* MAIN CONTENT SECTIONS */
+main {
+  padding: 80px 0;
+}
+
+section {
+  padding: 80px 0;
+  position: relative;
+}
+
+section:nth-child(even) {
+  background: linear-gradient(180deg, transparent 0%, rgba(0,176,155,.03) 100%);
+}
+
+.section-head {
+  max-width: 800px;
+  margin-bottom: 60px;
+  animation: fadeInUp .8s ease;
+}
+
+.kicker {
+  display: inline-block;
+  font-size: .85rem;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 12px;
+}
+
+section:nth-child(even) .kicker {
+  color: var(--orange);
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.15;
+  letter-spacing: -1.5px;
+  color: var(--navy);
+  margin-bottom: 16px;
+}
+
+.lead {
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  max-width: 750px;
+}
+
+/* CARDS PROBLEM SECTION */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 32px 28px;
+  border: 1.5px solid var(--line);
+  transition: all .3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--green), var(--orange));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .3s ease;
+}
+
+.card:hover::before {
+  transform: scaleX(1);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(0,176,155,.15);
+  border-color: var(--green);
+}
+
+.card .icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(0,176,155,.15), rgba(242,153,74,.1));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  color: var(--green);
+}
+
+.card .icon svg {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+.card:nth-child(2) .icon {
+  color: #3498db;
+}
+
+.card:nth-child(3) .icon {
+  color: var(--orange);
+}
+
+.hyp .card .icon {
+  font-weight: 800;
+  font-size: 1.3rem;
+}
+
+.card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  color: var(--navy);
+}
+
+.card p {
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: .95rem;
+}
+
+/* FLOW SECTION */
+.flow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.flow-step {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 28px 20px;
+  text-align: center;
+  border: 1.5px solid var(--line);
+  transition: all .3s ease;
+  position: relative;
+}
+
+.flow-step::after {
+  content: '→';
+  position: absolute;
+  right: -28px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  color: var(--green);
+  font-weight: 700;
+}
+
+.flow-step:last-child::after {
+  display: none;
+}
+
+.flow-step:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 40px rgba(0,176,155,.15);
+  border-color: var(--green);
+  background: linear-gradient(135deg, rgba(0,176,155,.03), rgba(242,153,74,.02));
+}
+
+.flow-num {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, var(--green), #1dd1a1);
+  color: white;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.3rem;
+  margin: 0 auto 12px;
+  box-shadow: 0 8px 20px rgba(0,176,155,.3);
+}
+
+.flow-step h4 {
+  font-size: 1rem;
+  color: var(--navy);
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.flow-step p {
+  font-size: .85rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* FEATURES GRID */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+  margin-top: 40px;
+}
+
+.feature {
+  display: flex;
+  gap: 18px;
+  padding: 24px;
+  background: var(--white);
+  border-radius: 14px;
+  border: 1.5px solid var(--line);
+  transition: all .3s ease;
+}
+
+.feature:hover {
+  border-color: var(--green);
+  box-shadow: 0 15px 40px rgba(0,176,155,.1);
+  transform: translateX(8px);
+}
+
+.feature .icon {
+  width: 56px;
+  height: 56px;
+  min-width: 56px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(0,176,155,.15), rgba(242,153,74,.1));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--green);
+}
+
+.feature .icon svg {
+  width: 26px;
+  height: 26px;
+  display: block;
+}
+
+.feature h3 {
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+  color: var(--navy);
+  font-weight: 700;
+}
+
+.feature p {
+  font-size: .9rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* VALIDATION SECTION */
+.validation {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+  color: white;
+  border-radius: 20px;
+  padding: 60px 40px;
+  margin: 40px 0;
+}
+
+.validation .kicker {
+  color: var(--green);
+}
+
+.validation h2 {
+  color: white;
+  margin-bottom: 12px;
+}
+
+.validation .lead {
+  color: #d7e2e2;
+}
+
+.hyp {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.hyp .card {
+  background: rgba(255,255,255,.08);
+  border-color: rgba(255,255,255,.15);
+  color: white;
+}
+
+.hyp .card::before {
+  background: linear-gradient(90deg, var(--green), var(--orange));
+}
+
+.hyp .card h3 {
+  color: white;
+}
+
+.hyp .card p {
+  color: #d7e2e2;
+}
+
+.hyp .card .icon {
+  background: rgba(0,176,155,.2);
+  color: var(--green);
+  font-size: 1.8rem;
+  border: 1px solid rgba(0,176,155,.3);
+}
+
+/* TEAM SECTION */
+.team {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 28px;
+  margin-top: 50px;
+}
+
+.person {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 36px 28px;
+  text-align: center;
+  border: 1.5px solid var(--line);
+  transition: all .3s ease;
+}
+
+.person:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 50px rgba(0,176,155,.15);
+  border-color: var(--green);
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, var(--green), var(--orange));
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 800;
+  font-size: 1.6rem;
+  margin: 0 auto 16px;
+  box-shadow: 0 12px 30px rgba(0,176,155,.3);
+}
+
+.person h3 {
+  font-size: 1.1rem;
+  color: var(--navy);
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+
+.role {
+  display: inline-block;
+  font-size: .8rem;
+  color: var(--green);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  padding: 6px 12px;
+  background: rgba(0,176,155,.1);
+  border-radius: 999px;
+}
+
+.person p {
+  color: var(--muted);
+  font-size: .9rem;
+  line-height: 1.7;
+}
+
+/* CONTACT SECTION */
+#contacto {
+  background: linear-gradient(135deg, var(--blue2) 0%, var(--blue) 100%);
+  color: white;
+  border-radius: 20px;
+  margin: 40px 0;
+}
+
+.contact {
+  padding: 60px 40px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+#contacto .kicker {
+  color: var(--green);
+}
+
+#contacto h2 {
+  color: white;
+  margin-bottom: 14px;
+}
+
+.mini-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.mini-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: rgba(255,255,255,.08);
+  border-radius: 10px;
+  border: 1px solid rgba(0,176,155,.2);
+  font-size: .9rem;
+}
+
+.tag {
+  font-size: .7rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+
+.tag.green {
+  background: rgba(0,176,155,.3);
+  color: var(--green);
+}
+
+.tag.orange {
+  background: rgba(242,153,74,.3);
+  color: var(--orange);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field label {
+  font-size: .9rem;
+  font-weight: 600;
+  color: #eafaf7;
+}
+
+.field input,
+.field textarea {
+  padding: 12px 14px;
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 10px;
+  background: rgba(255,255,255,.08);
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-size: .95rem;
+  transition: all .3s ease;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: rgba(255,255,255,.4);
+}
+
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--green);
+  background: rgba(255,255,255,.12);
+  box-shadow: 0 0 0 3px rgba(0,176,155,.2);
+}
+
+.form button {
+  padding: 14px 24px;
+  background: linear-gradient(135deg, var(--orange), #e67e3c);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: .95rem;
+  cursor: pointer;
+  transition: all .3s ease;
+  margin-top: 8px;
+}
+
+.form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 40px rgba(242,153,74,.4);
+}
+
+.form button:active {
+  transform: translateY(0);
+}
+
+#formMsg {
+  font-size: .9rem;
+  color: var(--green);
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+/* FOOTER */
+.footer {
+  background: var(--navy);
+  color: #dce6e7;
+  padding: 40px 0;
+  border-top: 1px solid rgba(255,255,255,.1);
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.copyright {
+  font-size: .85rem;
+}
+
+.social {
+  display: flex;
+  gap: 16px;
+}
+
+.social a {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .3s ease;
+  border: 1px solid rgba(255,255,255,.1);
+}
+
+.social a svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+.social a:hover {
+  background: var(--green);
+  color: white;
+  border-color: var(--green);
+  transform: translateY(-3px);
+}
+
+/* GALERÍA / PROMOCIÓN DEL PROTOTIPO */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.gallery-item {
+  background: var(--white);
+  border-radius: 16px;
+  border: 1.5px solid var(--line);
+  overflow: hidden;
+  transition: all .3s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(0,176,155,.15);
+  border-color: var(--green);
+}
+
+.gallery-visual {
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery-visual svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.gallery-caption {
+  padding: 18px 20px;
+}
+
+.gallery-caption h4 {
+  font-size: 1rem;
+  color: var(--navy);
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+
+.gallery-caption p {
+  font-size: .85rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding: 60px 0;
+  }
+
+  .dashboard {
+    transform: none;
+  }
+
+  .flow {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .flow-step::after {
+    display: none;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .nav-links {
+    gap: 16px;
+    font-size: .85rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  section {
+    padding: 60px 0;
+  }
+
+  .metric-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .actions {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .flow {
+    grid-template-columns: 1fr;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .team {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <div class="brand">
+      <span class="brand-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M12 2L3 7v6c0 5 3.8 8.6 9 9 5.2-.4 9-4 9-9V7l-9-5z" fill="#fff" fill-opacity=".9"/>
+          <path d="M8.5 12.5l2.3 2.3L15.8 9" stroke="#0f2027" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span>BioTech</span>
+    </div>
+    <nav class="nav-links">
+      <a href="#inicio">Inicio</a>
+      <a href="#problema">Problema</a>
+      <a href="#solucion">Solución</a>
+      <a href="#galeria">Galería</a>
+      <a href="#equipo">Equipo</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<header class="hero" id="inicio">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow">
+        <span class="dot"></span>
+        Modelo predictivo para manufactura
+      </div>
+      <h1>Planifica hoy.<br><span>Produce mejor.</span></h1>
+      <p>BioTech integra datos operativos, sensores y analítica predictiva para anticipar necesidades de materiales, agua, energía y otros recursos antes de fabricar.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#solucion">Conocer el modelo →</a>
+        <a class="btn btn-ghost" href="#contacto">Solicitar acceso</a>
+      </div>
+      <div class="hero-note">Proyecto académico · Universidad Libre · Ingeniería Aplicada 2026-60</div>
+    </div>
+    <div class="dashboard">
+      <div class="dash-top">
+        <div class="dash-title">BioTech Dashboard</div>
+        <div class="status">● Monitoreo predictivo</div>
+      </div>
+      <div class="metric-grid">
+        <div class="metric">
+          <small>Materiales</small>
+          <strong>Proyección</strong>
+          <div class="trend"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4 17l6-6 4 4 6-8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 7h6v6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Anticipada</div>
+        </div>
+        <div class="metric">
+          <small>Agua</small>
+          <strong>Seguimiento</strong>
+          <div class="trend"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4 17l6-6 4 4 6-8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 7h6v6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>En tiempo real</div>
+        </div>
+        <div class="metric">
+          <small>Energía</small>
+          <strong>Analítica</strong>
+          <div class="trend"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4 17l6-6 4 4 6-8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 7h6v6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Predictiva</div>
+        </div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-head">
+          <b>Consumo proyectado</b>
+          <span class="legend">Ejemplo conceptual</span>
+        </div>
+        <div class="chart">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
+        <div class="chart-labels">
+          <span>T-5</span>
+          <span>T-4</span>
+          <span>T-3</span>
+          <span>T-2</span>
+          <span>T-1</span>
+          <span>T</span>
+        </div>
+      </div>
+      <div class="alert">
+        <b><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M10.3 3.9L1.9 18a2 2 0 0 0 1.7 3h16.8a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 9v4M12 17h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Alertas preventivas</b>
+        <p>Detectar posibles ineficiencias antes de que impacten costos y recursos.</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- PROBLEMA -->
+  <section id="problema">
+    <div class="container">
+      <div class="section-head">
+        <div class="kicker">El reto</div>
+        <h2>La manufactura necesita anticiparse, no reaccionar.</h2>
+        <p class="lead">Las empresas dependen de datos históricos, estimaciones y cálculos de producciones anteriores. Cuando cambian el volumen o las condiciones, aumenta la incertidumbre sobre el consumo de recursos y aparecen riesgos de desperdicio y sobrecostos.</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M3.27 6.96L12 12l8.73-5.04M12 22.08V12" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Materias primas</h3>
+          <p>Estimar cantidades con anticipación resulta más difícil cuando cambian las condiciones de producción.</p>
+        </article>
+        <article class="card">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M12 2.5s6.5 7 6.5 11.5a6.5 6.5 0 1 1-13 0C5.5 9.5 12 2.5 12 2.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M13 18a3 3 0 0 0 3-3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Agua y energía</h3>
+          <p>Las variaciones en la operación pueden alterar el consumo esperado y dificultar la planeación.</p>
+        </article>
+        <article class="card">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M12 7v10M15 9.5c0-1.4-1.3-2.5-3-2.5s-3 1-3 2.2c0 3 6 1.4 6 4.3 0 1.4-1.3 2.5-3 2.5s-3-1.1-3-2.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Costos y desperdicio</h3>
+          <p>La incertidumbre puede traducirse en sobrecostos operativos y uso ineficiente de recursos.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUCIÓN -->
+  <section id="solucion">
+    <div class="container">
+      <div class="section-head">
+        <div class="kicker">La propuesta</div>
+        <h2>Un modelo predictivo que convierte datos en decisiones.</h2>
+        <p class="lead">La solución integra información del proceso, datos de ventas y variables capturadas por sensores para identificar patrones, anticipar necesidades y generar recomendaciones antes de fabricar.</p>
+      </div>
+      <div class="flow">
+        <div class="flow-step">
+          <div class="flow-num">1</div>
+          <h4>Captura</h4>
+          <p>Datos operativos, ventas y sensores.</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">2</div>
+          <h4>Integra</h4>
+          <p>Centralización de información.</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">3</div>
+          <h4>Predice</h4>
+          <p>Patrones y necesidades futuras.</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">4</div>
+          <h4>Alerta</h4>
+          <p>Posibles desviaciones o ineficiencias.</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">5</div>
+          <h4>Recomienda</h4>
+          <p>Apoyo para decidir antes de producir.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUNCIONALIDADES -->
+  <section id="funciones">
+    <div class="container">
+      <div class="section-head">
+        <div class="kicker">Funcionalidades</div>
+        <h2>Diseñado para que la información sea accionable.</h2>
+      </div>
+      <div class="feature-grid">
+        <article class="feature">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M3 17l6-6 4 4 8-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M15 7h6v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <h3>Proyección de recursos</h3>
+            <p>Estimación anticipada de materiales, agua, energía y otros recursos necesarios para la fabricación.</p>
+          </div>
+        </article>
+        <article class="feature">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M10.3 3.9L1.9 18a2 2 0 0 0 1.7 3h16.8a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M12 9v4M12 17h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <h3>Detección de ineficiencias</h3>
+            <p>Identificación de posibles desviaciones que puedan generar desperdicio o sobrecostos.</p>
+          </div>
+        </article>
+        <article class="feature">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" fill="currentColor" fill-opacity=".12"/>
+            </svg>
+          </div>
+          <div>
+            <h3>Analítica predictiva</h3>
+            <p>Uso de históricos y datos actuales para reconocer patrones y apoyar decisiones futuras.</p>
+          </div>
+        </article>
+        <article class="feature">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M8 12.5l2.5 2.5L16 9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <h3>Sostenibilidad medible</h3>
+            <p>Seguimiento de indicadores para planear procesos con un enfoque preventivo y sostenible.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERÍA / PROMOCIÓN DEL PROTOTIPO -->
+  <section id="galeria">
+    <div class="container">
+      <div class="section-head">
+        <div class="kicker">Promoción</div>
+        <h2>Así se ve BioTech en acción.</h2>
+        <p class="lead">Piezas visuales del prototipo pensadas para comunicar la propuesta de valor a empresas manufactureras.</p>
+      </div>
+      <div class="gallery">
+        <article class="gallery-item">
+          <div class="gallery-visual" style="background:linear-gradient(135deg,#0f2027,#2c5364);">
+            <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="24" y="30" width="272" height="120" rx="10" fill="#ffffff" fill-opacity=".08"/>
+              <rect x="40" y="46" width="70" height="42" rx="6" fill="#00b09b" fill-opacity=".5"/>
+              <rect x="120" y="46" width="70" height="42" rx="6" fill="#f2994a" fill-opacity=".5"/>
+              <rect x="200" y="46" width="70" height="42" rx="6" fill="#1dd1a1" fill-opacity=".5"/>
+              <rect x="40" y="100" width="230" height="10" rx="5" fill="#ffffff" fill-opacity=".25"/>
+              <rect x="40" y="118" width="150" height="10" rx="5" fill="#ffffff" fill-opacity=".15"/>
+            </svg>
+          </div>
+          <div class="gallery-caption">
+            <h4>Dashboard predictivo</h4>
+            <p>Vista conceptual del panel de monitoreo de materiales, agua y energía.</p>
+          </div>
+        </article>
+        <article class="gallery-item">
+          <div class="gallery-visual" style="background:linear-gradient(135deg,#00b09b,#1dd1a1);">
+            <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="160" cy="90" r="52" fill="#ffffff" fill-opacity=".15"/>
+              <path d="M120 95l25 25 55-60" stroke="#ffffff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+          </div>
+          <div class="gallery-caption">
+            <h4>Alertas tempranas</h4>
+            <p>Ilustración del sistema de recomendaciones antes de fabricar.</p>
+          </div>
+        </article>
+        <article class="gallery-item">
+          <div class="gallery-visual" style="background:linear-gradient(135deg,#f2994a,#ffb347);">
+            <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="50" y="110" width="30" height="40" fill="#ffffff" fill-opacity=".55"/>
+              <rect x="95" y="90" width="30" height="60" fill="#ffffff" fill-opacity=".7"/>
+              <rect x="140" y="60" width="30" height="90" fill="#ffffff" fill-opacity=".85"/>
+              <rect x="185" y="80" width="30" height="70" fill="#ffffff" fill-opacity=".7"/>
+              <rect x="230" y="40" width="30" height="110" fill="#ffffff"/>
+            </svg>
+          </div>
+          <div class="gallery-caption">
+            <h4>Sostenibilidad medible</h4>
+            <p>Representación del seguimiento de indicadores de consumo y eficiencia.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALIDACIÓN -->
+  <section class="validation">
+    <div class="container">
+      <div class="section-head">
+        <div class="kicker">Validación</div>
+        <h2>Hipótesis que BioTech debe comprobar.</h2>
+        <p class="lead">La Guía Actividad 2 plantea una primera ronda de validación con responsables de planeación y producción en empresas manufactureras.</p>
+      </div>
+      <div class="hyp">
+        <article class="card">
+          <div class="icon">H1</div>
+          <h3>Necesidad de anticipación</h3>
+          <p>Las empresas tienen dificultad para estimar recursos al planear y dependen de históricos.</p>
+        </article>
+        <article class="card">
+          <div class="icon">H2</div>
+          <h3>Impacto operativo</h3>
+          <p>La incertidumbre provoca desperdicios y sobrecostos cuando cambian condiciones.</p>
+        </article>
+        <article class="card">
+          <div class="icon">H3</div>
+          <h3>Valor de la solución</h3>
+          <p>Un modelo predictivo facilita decisiones antes de fabricar.</p>
+        </article>
+      </div>
+      <div style="margin-top: 30px; font-size: .9rem; color: #d7e2e2;">
+        <b style="color: var(--orange);">Criterio de validación:</b> una hipótesis se considera validada cuando al menos el <strong>60%</strong> de los participantes la confirman.
+      </div>
+    </div>
+  </section>
+
+  <!-- EQUIPO -->
+  <section id="equipo">
+    <div class="container">
+      <div class="section-head">
+        <div class="kicker">Quiénes somos</div>
+        <h2>Un equipo de ingeniería con roles complementarios.</h2>
+      </div>
+      <div class="team">
+        <article class="person">
+          <div class="avatar">PP</div>
+          <h3>Paula Andrea Parra Baquero</h3>
+          <span class="role">Líder de desarrollo de negocios</span>
+          <p>Investiga necesidades, alternativas de mercado y oportunidades de valor para el cliente.</p>
+        </article>
+        <article class="person">
+          <div class="avatar">NR</div>
+          <h3>Natalia Ramírez Diaz</h3>
+          <span class="role">Líder de mercadeo</span>
+          <p>Define segmentos, comunica la propuesta y recoge retroalimentación de usuarios potenciales.</p>
+        </article>
+        <article class="person">
+          <div class="avatar">JB</div>
+          <h3>José Barrios Machado</h3>
+          <span class="role">Líder tecnológico</span>
+          <p>Diseña el modelo funcional, integra datos y desarrolla la interfaz del prototipo.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="container contact">
+      <div class="contact-grid">
+        <div>
+          <div class="kicker">Prototipo</div>
+          <h2>Conversemos sobre los retos de tu operación.</h2>
+          <p style="margin-top: 14px; color: #eafaf7; max-width: 560px;">Déjanos tus datos para conocer tus necesidades de planeación, consumo de recursos e ineficiencias. El formulario es una parte demostrativa del prototipo.</p>
+          <div class="mini-list">
+            <div class="mini-item">
+              <span>Planeación de recursos</span>
+              <span class="tag green">Analítica</span>
+            </div>
+            <div class="mini-item">
+              <span>Monitoreo de consumo</span>
+              <span class="tag green">Sensores</span>
+            </div>
+            <div class="mini-item">
+              <span>Alertas preventivas</span>
+              <span class="tag orange">Decisión</span>
+            </div>
+          </div>
+        </div>
+        <form class="form" id="leadForm">
+          <div class="field">
+            <label>Nombre de la empresa</label>
+            <input required placeholder="Ej. Empresa Manufacturera S.A.S.">
+          </div>
+          <div class="field">
+            <label>Correo corporativo</label>
+            <input required type="email" placeholder="correo@empresa.com">
+          </div>
+          <div class="field">
+            <label>Principal reto de producción</label>
+            <textarea required placeholder="Cuéntanos qué recurso o proceso deseas anticipar mejor."></textarea>
+          </div>
+          <button type="submit">Solicitar acceso al prototipo →</button>
+          <small id="formMsg" aria-live="polite"></small>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="copyright">© 2026 BioTech · Universidad Libre · Ingeniería Aplicada</div>
+    <div class="social">
+      <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.6c0-1.34-.02-3.06-1.87-3.06-1.87 0-2.16 1.46-2.16 2.97V21h-4V9z"/></svg>
+      </a>
+      <a href="https://github.com/" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.5c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.9-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.35 4.68-4.58 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
+      </a>
+      <a href="https://www.unilibre.edu.co/" target="_blank" rel="noopener" aria-label="Universidad Libre" title="Universidad Libre">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L2 8l10 6 8-4.8V17h2V8L12 2zM6 13.18v4.34c0 2 2.69 3.63 6 3.63s6-1.63 6-3.63v-4.34l-6 3.6-6-3.6z"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('leadForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const msg = document.getElementById('formMsg');
+  msg.textContent = '✓ Solicitud registrada en el prototipo. Gracias por contactarnos.';
+  this.reset();
+});
+</script>
+
+</body>
+</html>
