@@ -120,6 +120,24 @@ a {
   color: var(--green);
 }
 
+.menu-toggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 10px;
+  background: rgba(255,255,255,.08);
+  color: #fff;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-toggle svg {
+  width: 22px;
+  height: 22px;
+}
+
 /* HERO SECTION MEJORADA */
 .hero {
   background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 50%, var(--blue2) 100%);
@@ -1119,22 +1137,43 @@ h2 {
 @media (max-width: 768px) {
   .nav-inner {
     height: auto;
-    align-items: stretch;
-    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
     padding: 14px 0;
   }
 
+  .menu-toggle {
+    display: inline-flex;
+  }
+
   .nav-links {
-    width: 100%;
-    gap: 22px;
-    overflow-x: auto;
-    padding-bottom: 4px;
-    scrollbar-width: thin;
+    display: none;
+    position: absolute;
+    top: calc(100% - 4px);
+    right: 0;
+    z-index: 60;
+    width: min(220px, calc(100vw - 32px));
+    padding: 8px;
+    flex-direction: column;
+    gap: 0;
+    background: rgba(15, 32, 39, .98);
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 12px;
+    box-shadow: 0 18px 40px rgba(0,0,0,.25);
+  }
+
+  .nav-links.is-open {
+    display: flex;
   }
 
   .nav-links a {
-    flex: 0 0 auto;
-    white-space: nowrap;
+    padding: 11px 12px;
+    border-radius: 8px;
+  }
+
+  .nav-links a:hover {
+    background: rgba(0,176,155,.12);
   }
 
   .hero-grid {
@@ -1261,7 +1300,14 @@ h2 {
       </span>
       <span>BioTech</span>
     </div>
-    <nav class="nav-links">
+    <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="site-menu">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <circle cx="12" cy="5" r="1.8" />
+        <circle cx="12" cy="12" r="1.8" />
+        <circle cx="12" cy="19" r="1.8" />
+      </svg>
+    </button>
+    <nav class="nav-links" id="site-menu">
       <a href="#inicio">Inicio</a>
       <a href="#problema">Problema</a>
       <a href="#solucion">Solución</a>
@@ -1659,6 +1705,33 @@ h2 {
 </footer>
 
 <script>
+const menuToggle = document.querySelector('.menu-toggle');
+const siteMenu = document.getElementById('site-menu');
+
+function closeMenu() {
+  siteMenu.classList.remove('is-open');
+  menuToggle.setAttribute('aria-expanded', 'false');
+  menuToggle.setAttribute('aria-label', 'Abrir menú');
+}
+
+menuToggle.addEventListener('click', function() {
+  const isOpen = siteMenu.classList.toggle('is-open');
+  menuToggle.setAttribute('aria-expanded', String(isOpen));
+  menuToggle.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
+});
+
+siteMenu.querySelectorAll('a').forEach(function(link) {
+  link.addEventListener('click', closeMenu);
+});
+
+document.addEventListener('click', function(event) {
+  if (!event.target.closest('.nav-inner')) closeMenu();
+});
+
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') closeMenu();
+});
+
 document.getElementById('leadForm').addEventListener('submit', function(e) {
   e.preventDefault();
   const msg = document.getElementById('formMsg');
