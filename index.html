@@ -70,6 +70,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  min-width: 0;
 }
 
 .brand {
@@ -107,6 +108,7 @@ a {
   gap: 32px;
   font-size: .92rem;
   color: #dce6e7;
+  min-width: 0;
 }
 
 .nav-links a {
@@ -959,6 +961,8 @@ h2 {
 
 .field input,
 .field textarea {
+  width: 100%;
+  min-width: 0;
   padding: 12px 14px;
   border: 1px solid rgba(255,255,255,.2);
   border-radius: 10px;
@@ -1113,6 +1117,26 @@ h2 {
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
+  .nav-inner {
+    height: auto;
+    align-items: stretch;
+    gap: 12px;
+    padding: 14px 0;
+  }
+
+  .nav-links {
+    width: 100%;
+    gap: 22px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: thin;
+  }
+
+  .nav-links a {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
   .hero-grid {
     grid-template-columns: 1fr;
     min-height: auto;
@@ -1136,11 +1160,6 @@ h2 {
     gap: 40px;
   }
 
-  .nav-links {
-    gap: 16px;
-    font-size: .85rem;
-  }
-
   h2 {
     font-size: 2rem;
   }
@@ -1152,9 +1171,61 @@ h2 {
   .metric-grid {
     grid-template-columns: 1fr;
   }
+
+  .footer-inner {
+    flex-direction: column;
+    gap: 24px;
+    text-align: center;
+  }
 }
 
 @media (max-width: 480px) {
+  .container {
+    width: min(100% - 32px, 1180px);
+  }
+
+  .hero-grid {
+    padding: 48px 0;
+  }
+
+  h1 {
+    font-size: clamp(2.4rem, 13vw, 3.5rem);
+    letter-spacing: -1.5px;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .dashboard {
+    padding: 16px;
+    border-radius: 18px;
+  }
+
+  .dash-top {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  #contacto {
+    margin: 24px 0;
+    border-radius: 14px;
+  }
+
+  .contact {
+    padding: 40px 20px;
+  }
+
+  .mini-item {
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .footer {
+    padding: 32px 0;
+  }
+
   .actions {
     flex-direction: column;
   }
